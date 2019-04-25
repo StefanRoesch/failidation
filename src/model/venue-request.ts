@@ -1,8 +1,9 @@
 
 type VenueType = 'accommodation' | 'eventVenue';
 
-export type Venue = {
+export type VenueRequest = {
   id: number,
-  name: string,
+  venueId: string,
+  eventId: string,
   type: VenueType
 }

@@ -1,6 +1,6 @@
-import { Venue } from "../model/Venue";
+import { Venue } from "../model/venue";
 import { Omit } from "../model/types";
 
 export type VenueRepository = {
-  create: (event: Omit<Venue, 'id'>) => Promise<Venue>
+  create: (venueRequest: Omit<Venue, 'id'>) => Promise<Venue>
 }
