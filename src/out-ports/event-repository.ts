@@ -4,5 +4,5 @@ import { VenueRequest } from '../model/venue-request'
 
 export type EventRepository = {
   create: (event: Omit<Event, 'id'>) => Promise<Event>,
-  createVenueRequest: (venueRequest: VenueRequest) => Promise<VenueRequest>
+  createVenueRequest: (venueRequest: Omit<VenueRequest, 'id'>) => Promise<VenueRequest>
 }
