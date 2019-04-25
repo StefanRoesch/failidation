@@ -41,24 +41,22 @@ const DateFromString = new t.Type<Date, string, unknown>(
     a => a.toISOString()
   )
 
-const EventUnconstrained = t.type({
-    type: oneOf('EventFromString', ['Event']),
-    resId: t.string,
-    start: DateFromString,
-    end: DateFromString,
-    title: t.string,
-});
+  
+export const Event = t.type({
+      type: oneOf('EventFromString', ['Event']),
+      resId: t.string,
+      start: DateFromString,
+      end: DateFromString,
+      title: t.string,
+    });
+      
+export type Event = t.TypeOf<typeof Event>;
 
-export const Event = new t.Type(
-  'Event',
-  (u): u is Object => EventUnconstrained.is(u),
-  (u, c) =>
-    t.string.validate(u, c).chain(s => {
-      const d = new Date(s)
-      return isNaN(d.getTime()) ? t.failure(u, c) : t.success(d)
-    }),
-  a => a.toISOString()
-)
+const funy = (event: Event) => {
+  const test = Event.decode(event);
+  console.log(test);
+}
+
 
 
 

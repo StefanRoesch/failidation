@@ -16,7 +16,7 @@ const repository: EventRepository = {
   create: async (venue) => {
     return withinConnection<VenueT>(async (connection) => {
       const result = await connection.query(`
-          insert into event (name, type)
+          insert into venue (name, type)
           VALUES ($1, $2)
           RETURNING *
         `, [venue.name, venue.type]
@@ -25,7 +25,7 @@ const repository: EventRepository = {
       return {
         id: result.rows[0].id,
         name: result.rows[0].name,
-        type: result.rows[0].type as VenueType
+        type: result.rows[0].type
       };
     });
   }
