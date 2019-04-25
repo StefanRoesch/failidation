@@ -1,0 +1,23 @@
+{
+  "name": "failidation",
+  "version": "1.0.0",
+  "description": "gems validation poc",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "gems",
+    "service",
+    "blueprint"
+  ],
+  "author": "Mr. Thomaaaaas Mayerhofeeerrrr and Stefan Roeeeesch",
+  "license": "MIT",
+  "dependencies": {
+    "@types/jest": "^24.0.11",
+    "io-ts": "^1.8.5",
+    "jest": "^24.7.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
+  }
+}
