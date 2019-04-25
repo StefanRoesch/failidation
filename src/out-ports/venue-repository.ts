@@ -1,34 +1,6 @@
-import {withinConnection} from './connection';
-import { Omit } from './types';
+import { Venue } from "../model/Venue";
+import { Omit } from "../model/types";
 
-type VenueType = 'accommodation' | 'eventVenue';
-type VenueT = {
-  id: number,
-  name: string,
-  type: VenueType
+export type VenueRepository = {
+  create: (event: Omit<Venue, 'id'>) => Promise<Venue>
 }
-
-type EventRepository = {
-  create: (event: Omit<VenueT, 'id'>) => Promise<VenueT>
-}
-
-const repository: EventRepository = {
-  create: async (venue) => {
-    return withinConnection<VenueT>(async (connection) => {
-      const result = await connection.query(`
-          insert into venue (name, type)
-          VALUES ($1, $2)
-          RETURNING *
-        `, [venue.name, venue.type]
-      );
-
-      return {
-        id: result.rows[0].id,
-        name: result.rows[0].name,
-        type: result.rows[0].type
-      };
-    });
-  }
-}
-
-export default repository;
